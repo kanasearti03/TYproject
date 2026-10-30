@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Goa Travel Guide - SmartTour</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8fafc;
+            color: #333;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .navbar-brand {
+            font-size: 25px;
+            font-weight: 800;
+            color: #0d6efd;
+        }
+
+        .navbar-brand span {
+            color: #ff7a00;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #333;
+            margin-left: 8px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #0d6efd;
+        }
+
+        /* ================= HERO ================= */
+
+        .goa-hero {
+            min-height: 500px;
+            background:
+                linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)),
+                url("https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1600&q=80")
+                center/cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 58px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 19px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-weight: 700;
+            font-size: 32px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* ================= INFO CARDS ================= */
+
+        .info-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #eaf3ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            color: #0d6efd;
+            margin-bottom: 18px;
+        }
+
+        .info-card h4 {
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .info-card ul {
+            padding-left: 20px;
+            color: #666;
+        }
+
+        .info-card li {
+            margin-bottom: 8px;
+        }
+
+        /* ================= PLACES ================= */
+
+        .place-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            height: 100%;
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .place-content {
+            padding: 20px;
+        }
+
+        .place-content h4 {
+            font-weight: 700;
+        }
+
+        .place-content p {
+            color: #666;
+        }
+
+        /* ================= TIPS ================= */
+
+        .tips-section {
+            background: #eef6ff;
+        }
+
+        .tip-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            height: 100%;
+        }
+
+        .tip-box i {
+            font-size: 30px;
+            color: #0d6efd;
+        }
+
+        .tip-box h5 {
+            margin-top: 12px;
+            font-weight: 700;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111827;
+            color: white;
+            padding: 35px 0;
+            margin-top: 60px;
+        }
+
+        footer p {
+            color: #bbb;
+            margin-bottom: 0;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 768px) {
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+
+            .goa-hero {
+                min-height: 430px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg sticky-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="index.html">
+            Smart<span>Tour</span>
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="destinations.html">
+                        Destinations
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="planner.html">
+                        Trip Planner
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="hotels.html">
+                        Hotels
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">
+                        About
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="help.html">
+                        Help
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">
+                        Login
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="goa-hero">
+
+    <div class="hero-content">
+
+        <h1>Explore Goa</h1>
+
+        <p>
+            Discover beautiful beaches, delicious food, local culture,
+            exciting places and everything you need to know before visiting Goa.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INTRODUCTION ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Discover Goa</h2>
+
+            <p>
+                Everything you need to know for your Goa trip
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+
+                    <h4>About Goa</h4>
+
+                    <p>
+                        Goa is a popular coastal destination known for
+                        its beautiful beaches, Portuguese-influenced
+                        heritage, lively markets and relaxed atmosphere.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-calendar3"></i>
+                    </div>
+
+                    <h4>Best Time to Visit</h4>
+
+                    <p>
+                        The cooler and drier months are generally popular
+                        for sightseeing and beach activities. Monsoon
+                        months offer a greener landscape but can bring
+                        heavier rainfall.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PLACES ================= -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Popular Places in Goa</h2>
+
+            <p>Places you can explore during your trip</p>
+
+        </div>
+
+        <div class="row g-4">
+
+
+            <!-- BAGA BEACH -->
+
+            <div class="col-md-4">
+
+                <div class="place-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80"
+                        alt="Goa Beach">
+
+                    <div class="place-content">
+
+                        <h4>Baga Beach</h4>
+
+                        <p>
+                            A popular beach known for its lively atmosphere,
+                            restaurants and water activities.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CALANGUTE -->
+
+            <div class="col-md-4">
+
+                <div class="place-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=80"
+                        alt="Calangute Beach">
+
+                    <div class="place-content">
+
+                        <h4>Calangute Beach</h4>
+
+                        <p>
+                            One of Goa's well-known beaches with shopping,
+                            food and beach activities.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORT AGUADA -->
+
+            <div class="col-md-4">
+
+                <div class="place-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?auto=format&fit=crop&w=900&q=80"
+                        alt="Fort Aguada">
+
+                    <div class="place-content">
+
+                        <h4>Fort Aguada</h4>
+
+                        <p>
+                            A historic fort offering beautiful views
+                            of the Arabian Sea.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOD & FRUITS ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Goa Food & Local Fruits</h2>
+
+            <p>Experience local flavours during your journey</p>
+
+        </div>
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-egg-fried"></i>
+                    </div>
+
+                    <h4>Famous Food</h4>
+
+                    <ul>
+
+                        <li>Goan fish curry</li>
+                        <li>Prawn dishes</li>
+                        <li>Rice-based local meals</li>
+                        <li>Vegetarian Goan dishes</li>
+                        <li>Local bakery items</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-apple"></i>
+                    </div>
+
+                    <h4>Local Fruits</h4>
+
+                    <ul>
+
+                        <li>Coconut</li>
+                        <li>Cashew</li>
+                        <li>Mango</li>
+                        <li>Jackfruit</li>
+                        <li>Pineapple</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CLOTHING ================= -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>What to Wear in Goa?</h2>
+
+            <p>Choose comfortable clothing for your trip</p>
+
+        </div>
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-sun"></i>
+                    </div>
+
+                    <h4>Summer</h4>
+
+                    <p>
+                        Light and comfortable clothes are generally
+                        suitable for warm weather.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-water"></i>
+                    </div>
+
+                    <h4>Beach</h4>
+
+                    <p>
+                        Comfortable beachwear and suitable footwear
+                        are useful for beach activities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-cloud-rain"></i>
+                    </div>
+
+                    <h4>Monsoon</h4>
+
+                    <p>
+                        Carry light rain protection and footwear
+                        suitable for wet conditions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TRAVEL TIPS ================= -->
+
+<section class="py-5 tips-section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Goa Travel Tips</h2>
+
+            <p>Simple tips for a comfortable trip</p>
+
+        </div>
+
+        <div class="row g-4">
+
+
+            <div class="col-md-3 col-6">
+
+                <div class="tip-box">
+
+                    <i class="bi bi-droplet"></i>
+
+                    <h5>Stay Hydrated</h5>
+
+                    <p>
+                        Carry drinking water while sightseeing.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6">
+
+                <div class="tip-box">
+
+                    <i class="bi bi-phone"></i>
+
+                    <h5>Keep Your Phone Charged</h5>
+
+                    <p>
+                        Carry a power bank for long trips.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6">
+
+                <div class="tip-box">
+
+                    <i class="bi bi-map"></i>
+
+                    <h5>Plan Your Route</h5>
+
+                    <p>
+                        Group nearby places together to save travel time.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6">
+
+                <div class="tip-box">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    <h5>Travel Responsibly</h5>
+
+                    <p>
+                        Respect local culture and keep tourist places clean.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container text-center">
+
+        <h4>SmartTour</h4>
+
+        <p>
+            Smart Tourism & Travel Assistant
+        </p>
+
+        <p class="mt-2">
+            © 2026 SmartTour. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html>

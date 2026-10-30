@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Jaipur | Smart Tourism</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0d8b8b !important;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        .nav-link:hover {
+            color: #0d8b8b !important;
+        }
+
+        /* Hero */
+        .hero {
+            height: 470px;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+                url("https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 19px;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        /* Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-weight: 700;
+            color: #222;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .info-box i {
+            font-size: 30px;
+            color: #0d8b8b;
+            margin-bottom: 12px;
+        }
+
+        .info-box h5 {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* Destination Cards */
+        .destination-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h4 {
+            font-size: 21px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .location {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .location i {
+            color: #0d8b8b;
+        }
+
+        .rating {
+            color: #f5a623;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .visit-info {
+            border-top: 1px solid #eee;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .visit-info span {
+            display: block;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .visit-info i {
+            color: #0d8b8b;
+            margin-right: 6px;
+        }
+
+        /* Food & Shopping */
+        .feature-card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .feature-card h4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .feature-card ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        .feature-card li {
+            margin-bottom: 9px;
+            color: #666;
+        }
+
+        /* Tips */
+        .tips {
+            background: #eaf7f7;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .tips ul {
+            margin-bottom: 0;
+        }
+
+        .tips li {
+            margin-bottom: 10px;
+        }
+
+        /* Button */
+        .btn-custom {
+            background: #0d8b8b;
+            color: white;
+            border: none;
+            padding: 11px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .btn-custom:hover {
+            background: #087272;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #172b2b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #ddd;
+        }
+
+        @media (max-width: 768px) {
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-compass"></i> SmartTour
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="destinations.html">Destinations</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="planner.html">Trip Planner</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="hotels.html">Hotels</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Help</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Explore Jaipur</h1>
+
+            <p>
+                Discover the Pink City of India, famous for its
+                magnificent forts, royal palaces, colourful markets
+                and rich Rajasthani culture.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Jaipur Overview -->
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Why Visit Jaipur?</h2>
+
+                <p>
+                    Experience the royal heritage and colourful culture
+                    of Rajasthan.
+                </p>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+
+                    <div class="info-box text-center">
+
+                        <i class="bi bi-building"></i>
+
+                        <h5>Royal Heritage</h5>
+
+                        <p>
+                            Explore magnificent forts, palaces and
+                            historic monuments of Jaipur.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="info-box text-center">
+
+                        <i class="bi bi-calendar3"></i>
+
+                        <h5>Best Time</h5>
+
+                        <p>
+                            October to March is generally considered
+                            a comfortable period to explore Jaipur.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="info-box text-center">
+
+                        <i class="bi bi-camera"></i>
+
+                        <h5>Perfect for</h5>
+
+                        <p>
+                            History, architecture, photography,
+                            shopping and cultural experiences.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Sub Destinations -->
+    <section class="py-5 bg-light">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Top Places to Explore in Jaipur</h2>
+
+                <p>
+                    Explore the most popular attractions of the Pink City.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- 1 Amber Fort -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="destination-card">
+<img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0f/ff/bc/47.jpg"
+     alt="Amber Fort">
+
+                        <div class="card-content">
+
+                            <h4>Amber Fort</h4>
+
+                            <div class="location">
+                                <i class="bi bi-geo-alt"></i>
+                                Amer, Jaipur
+                            </div>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                A magnificent hilltop fort known for
+                                its grand architecture, courtyards
+                                and beautiful views.
+                            </p>
+
+                            <div class="visit-info">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    Recommended time: 2–3 hours
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-camera"></i>
+                                    Famous for: Architecture & views
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 2 Hawa Mahal -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="destination-card">
+
+                       <img src="https://media2.thrillophilia.com/images/photos/000/400/888/original/1764940553_Hawa_Mahal_Jaipur.jpg?dpr=1.5&h=450&w=753"
+     alt="Hawa Mahal">
+
+                        <div class="card-content">
+
+                            <h4>Hawa Mahal</h4>
+
+                            <div class="location">
+                                <i class="bi bi-geo-alt"></i>
+                                Badi Choupad, Jaipur
+                            </div>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                Jaipur's iconic Palace of Winds,
+                                famous for its unique pink façade
+                                and hundreds of small windows.
+                            </p>
+
+                            <div class="visit-info">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    Recommended time: 1–2 hours
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-camera"></i>
+                                    Famous for: Photography
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 3 City Palace -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="destination-card">
+
+                       <img src="https://assets.gqindia.com/photos/602a35d75aad02e4662bb145/master/w_1600%2Cc_limit/021.jpg"
+     alt="City Palace Jaipur">
+
+                        <div class="card-content">
+
+                            <h4>City Palace</h4>
+
+                            <div class="location">
+                                <i class="bi bi-geo-alt"></i>
+                                Old City, Jaipur
+                            </div>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                A grand royal complex featuring
+                                courtyards, museums, gateways and
+                                beautiful palace buildings.
+                            </p>
+
+                            <div class="visit-info">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    Recommended time: 2–3 hours
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-camera"></i>
+                                    Famous for: Royal architecture
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 4 Jantar Mantar -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="destination-card">
+
+                        <img src="https://media.assettype.com/outlooktraveller%2F2024-08%2F445f8fa5-b030-4962-9e94-2a06c1ef7971%2Fjaipur%20jantar%20mantar3.jpg"
+     alt="Jantar Mantar Jaipur">
+
+                        <div class="card-content">
+
+                            <h4>Jantar Mantar</h4>
+
+                            <div class="location">
+                                <i class="bi bi-geo-alt"></i>
+                                Jaipur City
+                            </div>
+
+                            <div class="rating">
+                                ★★★★☆
+                            </div>
+
+                            <p>
+                                A fascinating astronomical observatory
+                                featuring large historic instruments
+                                used for measuring celestial positions.
+                            </p>
+
+                            <div class="visit-info">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    Recommended time: 1–2 hours
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-stars"></i>
+                                    Famous for: Astronomy
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 5 Jal Mahal -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="destination-card">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Jal_Mahal_%28Jaipur%29.jpg/1280px-Jal_Mahal_%28Jaipur%29.jpg"
+     alt="Jal Mahal Jaipur"
+     width="100%"
+     height="220"
+     style="object-fit: cover;">
+
+                        <div class="card-content">
+
+                            <h4>Jal Mahal</h4>
+
+                            <div class="location">
+                                <i class="bi bi-geo-alt"></i>
+                                Man Sagar Lake, Jaipur
+                            </div>
+
+                            <div class="rating">
+                                ★★★★☆
+                            </div>
+
+                            <p>
+                                A beautiful palace appearing to float
+                                in the middle of Man Sagar Lake,
+                                especially attractive for photography.
+                            </p>
+
+                            <div class="visit-info">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    Recommended time: 1 hour
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-camera"></i>
+                                    Famous for: Lake views
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 6 Nahargarh Fort -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="destination-card">
+
+                       <img src="https://www.rajasthantourism.online/assets/images/gallery/nahargarh-fort-jaipur-01.webp"
+     alt="Nahargarh Fort Jaipur">
+
+                        <div class="card-content">
+
+                            <h4>Nahargarh Fort</h4>
+
+                            <div class="location">
+                                <i class="bi bi-geo-alt"></i>
+                                Aravalli Hills, Jaipur
+                            </div>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                A historic hill fort offering panoramic
+                                views of Jaipur and beautiful sunset
+                                experiences.
+                            </p>
+
+                            <div class="visit-info">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    Recommended time: 2 hours
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-sunset"></i>
+                                    Famous for: Sunset & city views
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 7 Jaigarh Fort -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="destination-card">
+
+                       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Jaigarh_Fort%2C_Jaipur%2C_20191218_1627_9453.jpg/1280px-Jaigarh_Fort%2C_Jaipur%2C_20191218_1627_9453.jpg"
+     alt="Jaigarh Fort Jaipur">
+
+                        <div class="card-content">
+
+                            <h4>Jaigarh Fort</h4>
+
+                            <div class="location">
+                                <i class="bi bi-geo-alt"></i>
+                                Amer, Jaipur
+                            </div>
+
+                            <div class="rating">
+                                ★★★★☆
+                            </div>
+
+                            <p>
+                                A massive hill fort known for its
+                                impressive defensive architecture
+                                and historic significance.
+                            </p>
+
+                            <div class="visit-info">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    Recommended time: 2 hours
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-building"></i>
+                                    Famous for: Fort architecture
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 8 Albert Hall Museum -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="destination-card">
+
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Albert_Hall_Museum%2C_Jaipur%2C_Rajasthan.jpg/1280px-Albert_Hall_Museum%2C_Jaipur%2C_Rajasthan.jpg"
+     alt="Albert Hall Museum Jaipur">
+                        <div class="card-content">
+
+                            <h4>Albert Hall Museum</h4>
+
+                            <div class="location">
+                                <i class="bi bi-geo-alt"></i>
+                                Ram Niwas Garden, Jaipur
+                            </div>
+
+                            <div class="rating">
+                                ★★★★☆
+                            </div>
+
+                            <p>
+                                One of Rajasthan's important museums,
+                                displaying art, crafts, historical
+                                objects and cultural collections.
+                            </p>
+
+                            <div class="visit-info">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    Recommended time: 1–2 hours
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-palette"></i>
+                                    Famous for: Art & culture
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Famous Food -->
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Experience Jaipur</h2>
+
+                <p>
+                    Don't miss the flavours and colourful shopping
+                    experience of Rajasthan.
+                </p>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-6">
+
+                    <div class="feature-card">
+
+                        <h4>
+                            <i class="bi bi-cup-hot text-warning"></i>
+                            Famous Food
+                        </h4>
+
+                        <ul>
+                            <li>Dal Baati Churma</li>
+                            <li>Rajasthani Thali</li>
+                            <li>Pyaaz Kachori</li>
+                            <li>Ghewar</li>
+                            <li>Laal Maas</li>
+                            <li>Gatte ki Sabzi</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="feature-card">
+
+                        <h4>
+                            <i class="bi bi-bag text-warning"></i>
+                            Famous Shopping
+                        </h4>
+
+                        <ul>
+                            <li>Johari Bazaar – Jewellery</li>
+                            <li>Bapu Bazaar – Handicrafts</li>
+                            <li>Blue Pottery</li>
+                            <li>Block Printed Textiles</li>
+                            <li>Traditional Rajasthani Items</li>
+                            <li>Jootis and Handcrafted Products</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Culture -->
+    <section class="py-5 bg-light">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Jaipur Culture</h2>
+
+                <p>
+                    Discover the colourful traditions of Rajasthan.
+                </p>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+
+                    <div class="info-box text-center">
+
+                        <i class="bi bi-music-note-beamed"></i>
+
+                        <h5>Music & Dance</h5>
+
+                        <p>
+                            Enjoy traditional Rajasthani folk music
+                            and colourful folk performances.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="info-box text-center">
+
+                        <i class="bi bi-palette"></i>
+
+                        <h5>Art & Handicrafts</h5>
+
+                        <p>
+                            Explore traditional textiles, pottery,
+                            jewellery and handcrafted products.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="info-box text-center">
+
+                        <i class="bi bi-house-heart"></i>
+
+                        <h5>Royal Lifestyle</h5>
+
+                        <p>
+                            Experience the architecture and traditions
+                            inspired by Jaipur's royal heritage.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Travel Tips -->
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="tips">
+
+                <h3 class="mb-4">
+                    <i class="bi bi-lightbulb"></i>
+                    Quick Travel Tips
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Plan fort visits during the cooler part of the day.
+                    </li>
+
+                    <li>
+                        Keep enough time for exploring Jaipur's local markets.
+                    </li>
+
+                    <li>
+                        Try traditional Rajasthani food during your visit.
+                    </li>
+
+                    <li>
+                        Carry water and comfortable footwear while sightseeing.
+                    </li>
+
+                    <li>
+                        Keep your camera ready for Jaipur's colourful architecture.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Back Button -->
+    <section class="text-center pb-5">
+
+        <div class="container">
+
+            <a href="destinations.html" class="btn btn-custom">
+
+                <i class="bi bi-arrow-left"></i>
+                Back to Destinations
+
+            </a>
+
+            <a href="hotels.html" class="btn btn-custom ms-2">
+
+                <i class="bi bi-building"></i>
+                Explore Hotels
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="container text-center">
+
+            <p>
+                © 2026 SmartTour | Smart Tourism and Travel Assistant
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

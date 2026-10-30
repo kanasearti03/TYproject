@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Destinations | SmartTour</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f7fbfa;
+            color: #222;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 14px 0;
+        }
+
+        .navbar-brand {
+            font-size: 25px;
+            font-weight: 800;
+            color: #0d8b8b !important;
+        }
+
+        .navbar-brand i {
+            margin-right: 6px;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin: 0 7px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #0d8b8b !important;
+        }
+
+        .login-btn {
+            border: 2px solid #0d8b8b;
+            color: #0d8b8b;
+            border-radius: 25px;
+            padding: 8px 20px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .login-btn:hover {
+            background: #0d8b8b;
+            color: white;
+        }
+
+
+        /* ================= PAGE HEADER ================= */
+
+        .page-header {
+            background:
+                linear-gradient(rgba(0, 80, 75, 0.78),
+                    rgba(0, 80, 75, 0.78)),
+                url("https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+
+            padding: 90px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 45px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            max-width: 650px;
+            margin: 15px auto 0;
+            font-size: 17px;
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        .search-section {
+            margin-top: -35px;
+            position: relative;
+        }
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .search-input {
+            height: 50px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 0 15px;
+            width: 100%;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #0d9b91;
+        }
+
+        .search-btn {
+            height: 50px;
+            width: 100%;
+            border: none;
+            background: #0d9b91;
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .search-btn:hover {
+            background: #08766f;
+        }
+
+
+        /* ================= DESTINATION SECTION ================= */
+
+        .destination-section {
+            padding: 75px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+
+        /* ================= FILTER BUTTONS ================= */
+
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            border: 1px solid #0d9b91;
+            background: white;
+            color: #0d8b8b;
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #0d9b91;
+            color: white;
+        }
+
+
+        /* ================= CARDS ================= */
+
+        .destination-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .destination-img {
+            position: relative;
+        }
+
+        .destination-img img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .location-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: white;
+            color: #087c75;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h5 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-body p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .rating {
+            color: #f5a623;
+            font-size: 14px;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            margin-top: 12px;
+            background: #0d9b91;
+            color: white;
+            padding: 9px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .explore-btn:hover {
+            background: #08766f;
+            color: white;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #102c2c;
+            color: white;
+            padding: 55px 0 20px;
+        }
+
+        footer h5 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            color: #b8c7c7;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: #b8c7c7;
+            text-decoration: none;
+        }
+
+        footer ul li a:hover {
+            color: white;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #1d4545;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            margin-right: 7px;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: #0d9b91;
+        }
+
+        .copyright {
+            border-top: 1px solid #315050;
+            margin-top: 35px;
+            padding-top: 20px;
+            text-align: center;
+            color: #aababa;
+            font-size: 14px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 768px) {
+
+            .page-header {
+                padding: 70px 15px;
+            }
+
+            .page-header h1 {
+                font-size: 35px;
+            }
+
+            .page-header p {
+                font-size: 15px;
+            }
+
+            .destination-section {
+                padding: 55px 0;
+            }
+
+            .section-title h2 {
+                font-size: 29px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+            .filter-btn {
+                padding: 7px 15px;
+                font-size: 13px;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="index.html">
+
+                <i class="bi bi-compass"></i>
+                SmartTour
+
+            </a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="destinations.html">
+                            Destinations
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="planner.html">
+                            Trip Planner
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="hotels.html">
+                            Hotels
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+                        <a class="login-btn" href="login.html">
+                            Login
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="page-header">
+
+        <div class="container">
+
+            <h1>Explore Destinations</h1>
+
+            <p>
+                Discover beautiful places, amazing experiences
+                and unforgettable adventures across India.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <section class="search-section">
+
+        <div class="container">
+
+            <div class="search-box">
+
+                <div class="row g-3 align-items-center">
+
+                    <div class="col-md-10">
+
+                        <input type="text" id="searchInput" class="search-input"
+                            placeholder="Search destination e.g. Goa, Jaipur, Kerala...">
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <button class="search-btn" onclick="searchDestination()">
+
+                            <i class="bi bi-search"></i>
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= DESTINATIONS ================= -->
+
+    <section class="destination-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Popular Destinations</h2>
+
+                <p>
+                    Choose your destination and start your journey.
+                </p>
+
+            </div>
+
+
+            <!-- FILTER BUTTONS -->
+
+            <div class="filter-buttons">
+
+                <button class="filter-btn active" onclick="filterDestination('all', this)">
+                    All
+                </button>
+
+                <button class="filter-btn" onclick="filterDestination('beach', this)">
+                    Beaches
+                </button>
+
+                <button class="filter-btn" onclick="filterDestination('hill', this)">
+                    Hill Stations
+                </button>
+
+                <button class="filter-btn" onclick="filterDestination('historical', this)">
+                    Historical
+                </button>
+
+                <button class="filter-btn" onclick="filterDestination('nature', this)">
+                    Nature
+                </button>
+
+            </div>
+
+
+
+            <!-- DESTINATION CARDS -->
+
+            <div class="row g-4" id="destinationContainer">
+
+
+                <!-- GOA -->
+
+                <div class="col-lg-4 col-md-6 destination-item" data-category="beach" data-name="goa">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80"
+                                alt="Goa">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Goa, India
+                            </span>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <h5>Goa</h5>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                Enjoy beautiful beaches, peaceful sunsets,
+                                exciting activities and vibrant culture.
+                            </p>
+
+                            <a href="goa.html" class="explore-btn">
+                                Explore Goa
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- JAIPUR -->
+
+                <div class="col-lg-4 col-md-6 destination-item" data-category="historical" data-name="jaipur">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=900&q=80"
+                                alt="Jaipur">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Rajasthan
+                            </span>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <h5>Jaipur</h5>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                Explore magnificent forts, royal palaces
+                                and the colorful culture of Rajasthan.
+                            </p>
+
+                            <a href="jaipur.html" class="explore-btn">
+                                Explore Jaipur
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- KERALA -->
+
+                <div class="col-lg-4 col-md-6 destination-item" data-category="nature" data-name="kerala">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80"
+                                alt="Kerala">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Kerala
+                            </span>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <h5>Kerala</h5>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                Experience beautiful backwaters,
+                                greenery, beaches and peaceful nature.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Kerala
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MANALI -->
+
+                <div class="col-lg-4 col-md-6 destination-item" data-category="hill" data-name="manali">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80"
+                                alt="Manali">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Himachal Pradesh
+                            </span>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <h5>Manali</h5>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                Enjoy mountains, valleys, cool weather
+                                and beautiful Himalayan landscapes.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Manali
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AGRA -->
+
+                <div class="col-lg-4 col-md-6 destination-item" data-category="historical" data-name="agra">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=900&q=80"
+                                alt="Agra">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Uttar Pradesh
+                            </span>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <h5>Agra</h5>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                Visit the iconic Taj Mahal and discover
+                                the rich history of Mughal India.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Agra
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- MUNNAR -->
+
+                <div class="col-lg-4 col-md-6 destination-item" data-category="hill" data-name="munnar">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1593693411515-c20261bcad6e?auto=format&fit=crop&w=900&q=80"
+                                alt="Munnar">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Kerala
+                            </span>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <h5>Munnar</h5>
+
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+
+                            <p>
+                                Discover tea plantations, misty hills
+                                and beautiful natural landscapes.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Munnar
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <!-- KASHMIR -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="hill" data-name="kashmir">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?auto=format&fit=crop&w=800&q=80"
+                                alt="Kashmir">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Jammu & Kashmir
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Kashmir</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Explore beautiful valleys, peaceful lakes,
+                                mountains and breathtaking landscapes.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Kashmir
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MUMBAI -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="historical" data-name="mumbai">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80"
+                                alt="Mumbai">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Maharashtra
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Mumbai</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Experience the Gateway of India, Marine Drive,
+                                beaches and the vibrant city life.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Mumbai
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LONAVALA -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="nature" data-name="lonavala">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=900&q=80"
+                                alt="Lonavala">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Maharashtra
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Lonavala</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Enjoy green hills, waterfalls, forts and
+                                peaceful monsoon landscapes.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Lonavala
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MAHABALESHWAR -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="hill" data-name="mahabaleshwar">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80"
+                                alt="Mahabaleshwar">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Maharashtra
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Mahabaleshwar</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Discover scenic viewpoints, green valleys,
+                                waterfalls and beautiful hill landscapes.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Mahabaleshwar
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RISHIKESH -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="nature" data-name="rishikesh">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=900&q=80"
+                                alt="Rishikesh">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Uttarakhand
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Rishikesh</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Explore riverside views, mountains, temples
+                                and peaceful natural surroundings.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Rishikesh
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- UDAIPUR -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="historical" data-name="udaipur">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?auto=format&fit=crop&w=800&q=80"
+                                alt="Udaipur">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Rajasthan
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Udaipur</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Visit beautiful lakes, royal palaces and
+                                historic attractions of the City of Lakes.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Udaipur
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OOTY -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="hill" data-name="ooty">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1593693411515-c20261bcad6e?auto=format&fit=crop&w=900&q=80"
+                                alt="Ooty">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Tamil Nadu
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Ooty</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Enjoy cool weather, green tea gardens,
+                                peaceful lakes and beautiful hills.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Ooty
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ANDAMAN -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="beach" data-name="andaman">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80"
+                                alt="Andaman">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Andaman & Nicobar
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Andaman</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Relax on beautiful beaches and enjoy clear
+                                waters, islands and peaceful surroundings.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Andaman
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LADAKH -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="hill" data-name="ladakh">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=900&q=80"
+                                alt="Ladakh">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Ladakh
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Ladakh</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Discover high mountains, monasteries, valleys
+                                and spectacular Himalayan scenery.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Ladakh
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NASHIK -->
+                <div class="col-lg-4 col-md-6 destination-item" data-category="nature" data-name="nashik">
+
+                    <div class="destination-card">
+
+                        <div class="destination-img">
+
+                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80"
+                                alt="Nashik">
+
+                            <span class="location-badge">
+                                <i class="bi bi-geo-alt"></i>
+                                Maharashtra
+                            </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5>Nashik</h5>
+
+                            <div class="rating">★★★★★</div>
+
+                            <p>
+                                Explore temples, vineyards, scenic places
+                                and the beautiful Godavari river.
+                            </p>
+
+                            <a href="#" class="explore-btn">
+                                Explore Nashik
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="row g-4">
+
+
+                <div class="col-lg-4">
+
+                    <h5>
+                        <i class="bi bi-compass"></i>
+                        SmartTour
+                    </h5>
+
+                    <p>
+                        Your smart tourism and travel assistant.
+                        Discover destinations, plan trips and
+                        travel smarter.
+                    </p>
+
+                    <div class="social-icons">
+
+                        <a href="#">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-2 col-md-4">
+
+                    <h5>Quick Links</h5>
+
+                    <ul>
+
+                        <li>
+                            <a href="index.html">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="destinations.html">
+                                Destinations
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="planner.html">
+                                Trip Planner
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="about.html">
+                                About
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="col-lg-3 col-md-4">
+
+                    <h5>Services</h5>
+
+                    <ul>
+
+                        <li>
+                            <a href="hotels.html">
+                                Hotels
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="planner.html">
+                                Trip Planning
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Budget Calculator
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Weather
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="col-lg-3 col-md-4">
+
+                    <h5>Contact</h5>
+
+                    <p>
+                        <i class="bi bi-envelope"></i>
+                        support@smarttour.com
+                    </p>
+
+                    <p>
+                        <i class="bi bi-telephone"></i>
+                        +91 98765 43210
+                    </p>
+
+                    <p>
+                        <i class="bi bi-geo-alt"></i>
+                        Maharashtra, India
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+
+                © 2026 SmartTour.
+                All Rights Reserved.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function filterDestination(category, button) {
+
+            let cards = document.querySelectorAll(".destination-item");
+            let buttons = document.querySelectorAll(".filter-btn");
+
+            buttons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            cards.forEach(function (card) {
+
+                if (category === "all" ||
+                    card.getAttribute("data-category") === category) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+                }
+
+            });
+        }
+
+
+        function searchDestination() {
+
+            let searchValue =
+                document.getElementById("searchInput").value
+                    .toLowerCase()
+                    .trim();
+
+            let cards = document.querySelectorAll(".destination-item");
+
+            cards.forEach(function (card) {
+
+                let destination =
+                    card.getAttribute("data-name");
+
+                if (destination &&
+                    destination.toLowerCase().includes(searchValue)) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+                }
+
+            });
+        }
+
+
+        document.getElementById("searchInput")
+            .addEventListener("keyup", function (event) {
+
+                if (event.key === "Enter") {
+                    searchDestination();
+                }
+
+            });
+
+
+        window.addEventListener("DOMContentLoaded", function () {
+
+            let params = new URLSearchParams(window.location.search);
+
+            let searchValue = params.get("search");
+
+            if (searchValue) {
+
+                document.getElementById("searchInput").value = searchValue;
+
+                searchDestination();
+            }
+
+        });
+
+    </script>s
+
+
+</body>
+
+</html>

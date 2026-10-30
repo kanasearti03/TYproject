@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us - SmartTour</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8ffff;
+            color: #222;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .navbar-brand {
+            font-size: 25px;
+            font-weight: 800;
+            color: #008c8c !important;
+        }
+
+        .navbar-brand i {
+            margin-right: 5px;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin: 0 8px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #008c8c !important;
+        }
+
+        .login-btn {
+            background: #008c8c;
+            color: white !important;
+            padding: 9px 20px !important;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .login-btn:hover {
+            background: #006f6f;
+        }
+
+        /* Page Header */
+        .page-header {
+            min-height: 390px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background:
+                linear-gradient(rgba(0, 80, 80, 0.72), rgba(0, 80, 80, 0.72)),
+                url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-header h1 {
+            font-size: 50px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .section-title {
+            color: #008c8c;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .about-content h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+
+        .about-list li {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .about-list i {
+            color: #008c8c;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* Features */
+        .features-section {
+            background: #eefafa;
+            padding: 80px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-heading h2 {
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .section-heading p {
+            color: #777;
+            max-width: 650px;
+            margin: 10px auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 20px;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #dff7f7;
+            color: #008c8c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .feature-card h4 {
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #777;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* How It Works */
+        .how-section {
+            padding: 80px 0;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 55px;
+            height: 55px;
+            background: #008c8c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .step-card h5 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .step-card p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 70px 20px;
+            background:
+                linear-gradient(rgba(0, 120, 120, 0.9), rgba(0, 120, 120, 0.9)),
+                url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #008c8c;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        .cta-btn:hover {
+            background: #eaffff;
+            color: #006f6f;
+        }
+
+        /* Footer */
+        footer {
+            background: #063f3f;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-brand {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: #c9dddd;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #c9dddd;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #b8cccc;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .page-header {
+                min-height: 320px;
+            }
+
+            .page-header h1 {
+                font-size: 38px;
+            }
+
+            .page-header p {
+                font-size: 15px;
+                padding: 0 15px;
+            }
+
+            .about-section,
+            .features-section,
+            .how-section {
+                padding: 55px 0;
+            }
+
+            .about-image {
+                height: 300px;
+                margin-bottom: 30px;
+            }
+
+            .about-content h2 {
+                font-size: 28px;
+            }
+
+            .section-heading h2 {
+                font-size: 28px;
+            }
+
+            .cta-section h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand" href="index.html">
+            <i class="bi bi-compass"></i> SmartTour
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="destinations.html">Destinations</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="planner.html">Trip Planner</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="hotels.html">Hotels</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="about.html">About</a>
+                </li>
+
+                <li class="nav-item mt-2 mt-lg-0 ms-lg-2">
+                    <a class="nav-link login-btn" href="login.html">
+                        Login
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+
+        <h1>About SmartTour</h1>
+
+        <p>
+            Your smart travel companion for discovering amazing destinations,
+            planning perfect trips and finding comfortable stays.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- About SmartTour -->
+<section class="about-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <img
+                    src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1000&q=80"
+                    class="about-image"
+                    alt="Travel">
+
+            </div>
+
+            <div class="col-lg-6 about-content">
+
+                <div class="section-title">
+                    ABOUT US
+                </div>
+
+                <h2>
+                    Making Your Travel Smarter & Easier
+                </h2>
+
+                <p>
+                    SmartTour is a smart tourism and travel assistant designed
+                    to make travel planning simple, convenient and enjoyable.
+                </p>
+
+                <p>
+                    From discovering beautiful destinations to planning your
+                    trip and finding suitable hotels, SmartTour brings useful
+                    travel information together in one place.
+                </p>
+
+                <ul class="about-list">
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Easy trip planning
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Explore popular destinations
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Find suitable hotels
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Smart travel recommendations
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Features -->
+<section class="features-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-title">
+                WHY SMARTTOUR?
+            </div>
+
+            <h2>Everything You Need for Your Journey</h2>
+
+            <p>
+                SmartTour provides simple and useful features to help
+                travelers plan their journey with confidence.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- Feature 1 -->
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+
+                    <h4>Explore</h4>
+
+                    <p>
+                        Discover beautiful destinations and explore
+                        interesting places for your next trip.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Feature 2 -->
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+
+                    <h4>Plan</h4>
+
+                    <p>
+                        Create your trip plan according to your destination,
+                        dates, budget and travel preferences.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Feature 3 -->
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-building"></i>
+                    </div>
+
+                    <h4>Stay</h4>
+
+                    <p>
+                        Find comfortable hotels and suitable accommodation
+                        options for your journey.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Feature 4 -->
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+
+                    <h4>Smart Tips</h4>
+
+                    <p>
+                        Get useful travel tips and recommendations to make
+                        your journey more enjoyable.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- How It Works -->
+<section class="how-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-title">
+                HOW IT WORKS
+            </div>
+
+            <h2>Plan Your Journey in 3 Simple Steps</h2>
+
+            <p>
+                SmartTour makes travel planning easy and straightforward.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="step-card">
+
+                    <div class="step-number">1</div>
+
+                    <h5>Choose Destination</h5>
+
+                    <p>
+                        Explore destinations and choose the place
+                        you want to visit.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="step-card">
+
+                    <div class="step-number">2</div>
+
+                    <h5>Plan Your Trip</h5>
+
+                    <p>
+                        Enter your travel dates, budget and preferences
+                        to create your trip plan.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="step-card">
+
+                    <div class="step-number">3</div>
+
+                    <h5>Enjoy Your Journey</h5>
+
+                    <p>
+                        Find a suitable stay and get ready for
+                        an amazing travel experience.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+
+    <div class="container">
+
+        <h2>Ready to Explore the World?</h2>
+
+        <p>
+            Start planning your next adventure with SmartTour
+            and make every journey special.
+        </p>
+
+        <a href="destinations.html" class="cta-btn">
+            Explore Destinations
+            <i class="bi bi-arrow-right"></i>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+<footer>
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-5">
+
+                <div class="footer-brand">
+                    <i class="bi bi-compass"></i> SmartTour
+                </div>
+
+                <p>
+                    Smart Tourism and Travel Assistant that helps you
+                    discover destinations, plan trips and find suitable stays.
+                </p>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="footer-title">
+                    Quick Links
+                </div>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="destinations.html">Destinations</a>
+                    </li>
+
+                    <li>
+                        <a href="planner.html">Trip Planner</a>
+                    </li>
+
+                    <li>
+                        <a href="hotels.html">Hotels</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-6 col-lg-3">
+
+                <div class="footer-title">
+                    Information
+                </div>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="about.html">About Us</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Travel Tips</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+
+                    <li>
+                        <a href="login.html">Login</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 SmartTour. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
